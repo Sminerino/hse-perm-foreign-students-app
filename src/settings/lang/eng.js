@@ -37,6 +37,9 @@ const lang = {
         GROUP: 'Group',
         CREDITS: 'Credits',
     },
+    NEWS: {
+        title: 'News',
+    },
     GROUP: {
         GROUP_TITLE: 'Group',
         PROGRAM: 'Program',

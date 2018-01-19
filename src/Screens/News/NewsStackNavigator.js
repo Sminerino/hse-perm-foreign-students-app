@@ -1,13 +1,15 @@
 import React from 'react'
 import { StackNavigator } from 'react-navigation';
+import { AllNews } from "./Screens/AllNews/AllNews";
+import { NewsInstance } from "./Screens/NewsInstance/NewsInstance";
 
 export const NewsStackNavigator = (wrapperProps) => {
     const WrappedNavigator = StackNavigator({
             NewsInstance: {
-                screen: NewsTile,
+                screen: NewsInstance,
             },
             AllNews: {
-                screen: News,
+                screen: AllNews,
             },
         },
         {

@@ -1,91 +1,86 @@
 import React from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View } from 'react-native';
 import SettingsPickerScreenStyles from './SettingsPickerScreenStyles';
-import SettingsTile from './SettingsTile/SettingsTile';
-import ScreenHeader from './../../../../Controls/ScreenHeader/ScreenHeader';
-import GroupPickerModal from './GroupPickerModal/GroupPickerModal';
-import settingsStoreActions from './../../../../AsyncStorageActions/settings/settings';
-import tools from './../../../../tools/tools';
+import { SettingsTile } from './SettingsTile/SettingsTile';
+import { ScreenHeader } from './../../../../Controls/ScreenHeader/ScreenHeader';
+import { GroupPickerModal } from './GroupPickerModal/GroupPickerModal';
+import { tools } from './../../../../tools/tools';
 
-export default class SettingsPickerScreen extends React.Component {
+export class SettingsPickerScreen extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             groupModalVisible: false,
-            group: null,
-            isLoaded: false
+            loaded: false
         }
     }
 
-    componentWillMount() {
-        settingsStoreActions.getGroup()
-        .then(response => {
-            if(response)
-                this.setState({
-                    group: response,
-                    isLoaded: true
-                });
+    setGroup = (group) => {
+        this.props.setGroup(group);
+    };
+
+    closeModal = () => {
+        this.setState({
+            groupModalVisible: false
         });
+    };
+
+    openModal = () => {
+        this.setState({
+            groupModalVisible: true
+        });
+    };
+
+    toggleDrawer = () => {
+        this.props.navigation.navigate('DrawerToggle');
+    };
+
+    navigateToLanguagePicker = () => {
+        this.props.navigation.navigate('Language');
+    };
+
+    componentDidMount() {
+        this.props.loadGroup();
     }
 
     render() {
-        if(this.state.isLoaded)
-            return (
-                <View style={SettingsPickerScreenStyles.container}>
-                    <GroupPickerModal
-                        onRequestClose={() => this.setState({groupModalVisible:false})}
-                        visible={this.state.groupModalVisible}
-                        group={this.state.group}
-                        language={this.props.screenProps.language}
-                        onSubmit={this._groupSubmit}
+        return (
+            <View style={SettingsPickerScreenStyles.container}>
+                <GroupPickerModal
+                    onRequestClose={this.closeModal}
+                    visible={this.state.groupModalVisible}
+                    group={this.props.group}
+                    translation={{
+                        GROUP: this.props.translation.GROUP,
+                        INTERFACE: this.props.translation.INTERFACE
+                    }}
+                    onSubmit={this.setGroup}
+                />
+                <ScreenHeader
+                    title={this.props.translation.SETTINGS.TITLE}
+                    onLeftButtonPress={this.toggleDrawer}
+                />
+                <View style={SettingsPickerScreenStyles.tilesContainer}>
+                    <SettingsTile
+                        text={this.props.translation.SETTINGS.LANGUAGE}
+                        icon={require('./../../../../res/icons/language.png')}
+                        onPress={this.navigateToLanguagePicker}
+                        currentSettingText={this.props.languageLocal}
                     />
-                    <ScreenHeader
-                        title={this.props.screenProps.language.SETTINGS.TITLE}
-                        onLeftButtonPress={() =>
-                            this.props.screenProps.drawerNavigation.navigate('DrawerToggle')
+                    <SettingsTile
+                        text={this.props.translation.SETTINGS.GROUP}
+                        icon={require('./../../../../res/icons/group.png')}
+                        onPress={this.openModal}
+                        currentSettingText={
+                            tools.getShortGroupString(
+                                this.props.group,
+                                this.props.translation.GROUP.PROGRAMS
+                            )
                         }
                     />
-                    <View style={SettingsPickerScreenStyles.tilesContainer}>
-                        <SettingsTile
-                            text={this.props.screenProps.language.SETTINGS.LANGUAGE}
-                            icon={require('./../../../../res/icons/language.png')}
-                            onPress={() => this.props.navigation.navigate('Language')}
-                            currentSettingText={this.props.screenProps.language.LANG_LOCAL}
-                        />
-                        <SettingsTile
-                            text={this.props.screenProps.language.SETTINGS.GROUP}
-                            icon={require('./../../../../res/icons/group.png')}
-                            onPress={ () => this.setState({groupModalVisible: true}) }
-                            currentSettingText={
-                                tools.getShortGroupString(
-                                    this.state.group,
-                                    this.props.screenProps.language.GROUP.PROGRAMS
-                                )
-                            }
-                        />
-                    </View>
-                </View>
-            );
-        else return (
-            <View style={SettingsPickerScreenStyles.container}>
-                <ScreenHeader
-                    title={this.props.screenProps.language.SETTINGS.TITLE}
-                    onLeftButtonPress={() =>
-                        this.props.screenProps.drawerNavigation.navigate('DrawerToggle')
-                    }
-                />
-                <View style={SettingsPickerScreenStyles.loadingContainer}>
-                    <ActivityIndicator color='#003399' size='large'/>
                 </View>
             </View>
         );
     }
-
-    _groupSubmit = (_group) => {
-        this.setState(
-            {group: _group},
-            () => settingsStoreActions.setGroup(_group)
-        )
-    };
 }

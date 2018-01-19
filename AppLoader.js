@@ -1,49 +1,40 @@
 import React from 'react';
 import LoadingScreen from './src/Screens/LoadingScreen/LoadingScreen';
-import Workspace from './src/Workspace';
-import settingsStoreActions from './src/AsyncStorageActions/settings/settings';
+import { StyleSheet, View, StatusBar} from 'react-native';
+import { DrawerContainer } from "./src/redux/Containers/Drawer/DrawerContainer";
 import defaultSettings from './src/settings/defaultSettings';
 
-export default class AppLoader extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoaded: false,
-            settings: null,
-            updateLanguage: this._setLanguage,
-        }
-    }
+//this module is wrapped in redux container
+
+export class AppLoader extends React.Component {
+
     render() {
-        if(this.state.isLoaded) {
-            const { isLoaded, ...settings} = this.state;
-            return <Workspace {...settings} />;
+        if(this.props.isLoaded) {
+            return (
+            <View style={ styles.base }>
+                <View style={ styles.container }>
+                    <DrawerContainer />
+                </View>
+            </View>
+            );
         }
         else
-            return <LoadingScreen/>;
+            return <LoadingScreen />;
     }
     componentDidMount() {
-        settingsStoreActions.getLanguage()
-        .then(response => {
-            if (response) {
-                this.setState({
-                    language: response,
-                    isLoaded: true
-                });
-            }
-            else {
-                this.setState({
-                    ...defaultSettings,
-                    isLoaded: true,
-                });
-            }
-        });
+        this.props.loadApp();
     }
 
-    _setLanguage = (_language) => {
-        this.setState(
-            {language: _language},
-            () => settingsStoreActions.setLanguage(_language)
-        );
-    };
-
 }
+
+const styles = StyleSheet.create({
+    base: {
+        flex:1,
+        backgroundColor: '#003399',
+    },
+    container: {
+        marginTop: StatusBar.currentHeight, // change that to 20 for ios build
+        backgroundColor: '#fffafa',
+        flex: 1,
+    }
+});

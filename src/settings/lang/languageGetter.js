@@ -1,7 +1,7 @@
 import russian from './rus.js';
 import english from './eng.js';
 
-const languageGetter = (language) => {
+export const languageGetter = (language) => {
     switch(language) {
         case 'english':
             return english;

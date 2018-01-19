@@ -5,28 +5,12 @@ import {
 } from 'react-native';
 import GroupPickerModalStyles from './GroupPickerModalStyles';
 import studyPrograms from './../../../../../settings/studyPrograms/studyPrograms';
-import PropTypes from 'prop-types';
 
-export default class GroupPickerModal extends React.Component {
-    static propTypes = {
-        screenProps: PropTypes.shape({
-            language: PropTypes.object,
-        }),
-        groupObj: PropTypes.shape({
-            program: PropTypes.string,
-            year: PropTypes.number,
-            group: PropTypes.number,
-        }),
-        onRequestClose: PropTypes.func,
-        onSubmit: PropTypes.func
-    };
+export class GroupPickerModal extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            program: this.props.group.program,
-            year: this.props.group.year,
-            group: this.props.group.group,
             changed: false
         }
     }
@@ -54,12 +38,16 @@ export default class GroupPickerModal extends React.Component {
                     <View style={GroupPickerModalStyles.window}>
                         <View style={GroupPickerModalStyles.titleContainer}>
                             <Text style={GroupPickerModalStyles.title}>
-                                {this.props.language.GROUP.GROUP_TITLE}
+                                {this.props.translation.GROUP.GROUP_TITLE}
                             </Text>
                         </View>
                         <View style={GroupPickerModalStyles.pickersContainer}>
                             <Picker
-                                selectedValue={this.state.program}
+                                selectedValue={
+                                    this.state.program
+                                        ? this.state.program
+                                        : this.props.group.program
+                                }
                                 onValueChange={this._setStudyProgram}
                                 style={GroupPickerModalStyles.programPicker}
                                 itemStyle={GroupPickerModalStyles.itemStyle}
@@ -74,7 +62,11 @@ export default class GroupPickerModal extends React.Component {
                             </Picker>
 
                             <Picker
-                                selectedValue={this.state.year}
+                                selectedValue={
+                                    this.state.year
+                                        ? this.state.year
+                                        : this.props.group.year
+                                }
                                 onValueChange={this._setYear}
                                 style={GroupPickerModalStyles.picker}
                             >
@@ -88,7 +80,10 @@ export default class GroupPickerModal extends React.Component {
                             </Picker>
 
                             <Picker
-                                selectedValue={this.state.group}
+                                selectedValue={
+                                    this.state.group
+                                        ? this.state.group
+                                        : this.props.group.group}
                                 onValueChange={this._setGroup}
                                 style={GroupPickerModalStyles.picker}
                             >
@@ -113,7 +108,7 @@ export default class GroupPickerModal extends React.Component {
         studyPrograms.forEach(program => {
             programArr.push({
                 value: program,
-                label: this.props.language.GROUP.PROGRAMS[program].LONG
+                label: this.props.translation.GROUP.PROGRAMS[program].LONG
             })
         });
         return programArr;
@@ -126,26 +121,22 @@ export default class GroupPickerModal extends React.Component {
         return yearArr;
     }
     _setStudyProgram = (_program) => {
-        if(this.state.program !== _program) {
-            this.setState({
-                program: _program,
-                changed: true
-            });
-        }
+        this.setState({
+            program: _program,
+            changed: true
+        });
     };
     _setYear = (_year) => {
-        if(this.state.year !== _year)
-            this.setState({
-                year: _year,
-                changed: true
-            });
+        this.setState({
+            year: _year,
+            changed: true
+        });
     };
     _setGroup = (_group) => {
-        if(this.state.group !== _group)
-            this.setState({
-                group: _group,
-                changed: true
-            });
+        this.setState({
+            group: _group,
+            changed: true
+        });
     };
 
     _renderOutsideWindow(orientation) {
@@ -169,7 +160,7 @@ export default class GroupPickerModal extends React.Component {
                 >
                     <View style={GroupPickerModalStyles.button}>
                         <Text style={GroupPickerModalStyles.buttonText}>
-                            {this.props.language.INTERFACE.APPLY}
+                            {this.props.translation.INTERFACE.APPLY}
                         </Text>
                     </View>
                 </TouchableNativeFeedback>
@@ -179,7 +170,7 @@ export default class GroupPickerModal extends React.Component {
                 >
                     <View style={GroupPickerModalStyles.button}>
                         <Text style={GroupPickerModalStyles.buttonText}>
-                            {this.props.language.INTERFACE.CANCEL}
+                            {this.props.translation.INTERFACE.CANCEL}
                         </Text>
                     </View>
                 </TouchableNativeFeedback>
@@ -190,10 +181,18 @@ export default class GroupPickerModal extends React.Component {
     _submitState = () => {
         if(this.state.changed)
             this.props.onSubmit({
-                program: this.state.program,
-                year: this.state.year,
-                group: this.state.group,
-                subgroup: this.state.subgroup,
+                program:
+                    this.state.program
+                        ? this.state.program
+                        : this.props.group.program,
+                year:
+                    this.state.year
+                        ? this.state.year
+                        : this.props.group.year,
+                group:
+                    this.state.group
+                        ? this.state.group
+                        : this.props.group.group,
             });
         this.props.onRequestClose();
     };

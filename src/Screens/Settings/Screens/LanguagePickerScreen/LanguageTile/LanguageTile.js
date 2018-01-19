@@ -2,11 +2,16 @@ import React from 'react';
 import { View, Text, TouchableNativeFeedback, Image } from 'react-native';
 import LanguageTileStyles from './LanguageTileStyles';
 
-export default class LanguageTile extends React.Component {
+export class LanguageTile extends React.Component {
+
+    handlePress = () => {
+        this.props.onPress(this.props.language);
+    };
+
     render() {
         return (
             <TouchableNativeFeedback
-                onPress={() => this.props.onPress(this.props.language)}
+                onPress={this.handlePress}
             >
                 <View style={LanguageTileStyles.container}>
                     {this.props.language === this.props.currentLanguage
@@ -25,6 +30,5 @@ export default class LanguageTile extends React.Component {
                 </View>
             </TouchableNativeFeedback>
         );
-
     }
 }

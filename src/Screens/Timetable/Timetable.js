@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Button, Image, ScrollableView } from 'react-native';
+import { View } from 'react-native';
 import { ScreenHeader } from './../../Controls/ScreenHeader/ScreenHeader';
 import Datepicker from './TimetableDatepicker/TimetableDatepicker';
 import TimetableStyles from './TimetableStyles';
@@ -7,21 +7,20 @@ import TimetableDateswitcher from "./TimetableDateswitcher/TimetableDateswitcher
 import { ClassTilesContainer } from "./ClassTilesContainer/ClassTilesContainer";
 //import timetable api caller
 
-export default class Timetable extends React.Component {
+export class Timetable extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             currentDate: new Date(),
-
         }
     }
     render() {
         return(
           <View style={TimetableStyles.container}>
               <ScreenHeader
-                  title={this.props.screenProps.language.TIMETABLE.TITLE}
-                  onLeftButtonPress={() =>
+                  title={this.props.translation.TIMETABLE.TITLE}
+                  onLeftButtonPress={ () =>
                       this.props.navigation.navigate('DrawerToggle')
                   }
                   rightButton={{
@@ -31,7 +30,7 @@ export default class Timetable extends React.Component {
               />
 
               <TimetableDateswitcher
-                  localizedDayNames={this.props.screenProps.language.DATE.DAY}
+                  localizedDayNames={this.props.translation.DATE.DAY}
                   date={this.state.currentDate}
                   onDateChange={this.changeDate}
               />

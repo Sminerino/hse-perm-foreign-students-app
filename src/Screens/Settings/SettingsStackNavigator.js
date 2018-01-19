@@ -1,27 +1,21 @@
 import React from 'react'
-import { Text, View, Image } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import { SettingsPickerContainer } from "../../redux/Containers/SettingsScreen/SettingsPickerContainer";
+import { LanguagePickerContainer } from "../../redux/Containers/SettingsScreen/LanguagePickerContainer";
 
-import SettingsPickerScreen from './Screens/SettingsPickerScreen/SettingsPickerScreen';
-import LanguagePickerScreen from './Screens/LanguagePickerScreen/LanguagePickerScreen';
-
-const Settings = (wrapperProps) => {
+export const SettingsStackNavigator = () => {
     const SettingsStackNavigator = StackNavigator({
             Selector: {
-                screen: SettingsPickerScreen,
+                screen: SettingsPickerContainer,
             },
             Language: {
-                screen: LanguagePickerScreen,
+                screen: LanguagePickerContainer,
             },
         },
         {
             headerMode: 'none'
         }
     );
-    return <SettingsStackNavigator
-        screenProps = {{ ...wrapperProps.screenProps, drawerNavigation: wrapperProps.navigation }}
-    />;
+    return <SettingsStackNavigator />;
 };
-
-export default Settings;
 

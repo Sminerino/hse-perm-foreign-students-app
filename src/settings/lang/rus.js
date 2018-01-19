@@ -38,6 +38,9 @@ const lang = {
         CREDITS: 'О разработчике',
 
     },
+    NEWS: {
+        TITLE: 'Новости'
+    },
     GROUP: {
         GROUP_TITLE: 'Группа',
         PROGRAM: 'Программа',
