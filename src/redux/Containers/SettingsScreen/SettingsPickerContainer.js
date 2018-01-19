@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
             SETTINGS: state.translation.SETTINGS,
             INTERFACE: state.translation.INTERFACE
         },
-        navigation: ownProps.navigation
+        drawerNav: ownProps.screenProps.drawerNav
     }
 };
 

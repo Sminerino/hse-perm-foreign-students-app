@@ -3,7 +3,7 @@ import { StackNavigator } from 'react-navigation';
 import { SettingsPickerContainer } from "../../redux/Containers/SettingsScreen/SettingsPickerContainer";
 import { LanguagePickerContainer } from "../../redux/Containers/SettingsScreen/LanguagePickerContainer";
 
-export const SettingsStackNavigator = () => {
+export const SettingsStackNavigator = ({navigation}) => {
     const SettingsStackNavigator = StackNavigator({
             Selector: {
                 screen: SettingsPickerContainer,
@@ -16,6 +16,8 @@ export const SettingsStackNavigator = () => {
             headerMode: 'none'
         }
     );
-    return <SettingsStackNavigator />;
+    return <SettingsStackNavigator
+        screenProps={{drawerNav: navigation}}
+    />;
 };
 

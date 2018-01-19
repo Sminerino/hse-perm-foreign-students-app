@@ -33,7 +33,7 @@ export class SettingsPickerScreen extends React.Component {
     };
 
     toggleDrawer = () => {
-        this.props.navigation.navigate('DrawerToggle');
+        this.props.drawerNav.navigate('DrawerToggle');
     };
 
     navigateToLanguagePicker = () => {

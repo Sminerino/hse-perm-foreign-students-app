@@ -3,8 +3,8 @@ import { StackNavigator } from 'react-navigation';
 import { AllNews } from "./Screens/AllNews/AllNews";
 import { NewsInstance } from "./Screens/NewsInstance/NewsInstance";
 
-export const NewsStackNavigator = (wrapperProps) => {
-    const WrappedNavigator = StackNavigator({
+export const NewsStackNavigator = ({navigation}) => {
+    const NewsStackNavigator = StackNavigator({
             NewsInstance: {
                 screen: NewsInstance,
             },
@@ -16,8 +16,6 @@ export const NewsStackNavigator = (wrapperProps) => {
             headerMode: 'none'
         }
     );
-    return <WrappedNavigator
-        screenProps = {{ ...wrapperProps.screenProps, drawerNavigation: wrapperProps.navigation }}
-    />;
+    return <NewsStackNavigator screenProps={{drawerNav: navigation}}/>;
 };
 

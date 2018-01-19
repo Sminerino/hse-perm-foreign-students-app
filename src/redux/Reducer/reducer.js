@@ -11,8 +11,8 @@ const initialState = {
     news: [],
     /*how news instance looks like:
     * {
+    *   id: ''
     *   title: '',
-    *   abstract: '',
     *   picture: '',
     *   date: '',
     * }
