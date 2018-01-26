@@ -2,6 +2,11 @@ import { connect } from 'react-redux';
 import { SettingsPickerScreen } from "../../../Screens/Settings/Screens/SettingsPickerScreen/SettingsPickerScreen";
 import {getGroupAsync, setGroupAsync} from "../../Actions/settingsActions";
 
+//temp during development
+import { settingsAsyncStorageRequests } from "../../../AsyncStorageRequests/settings/settings";
+import { languageGetter } from "../../../settings/lang/languageGetter";
+//temp during development
+
 const mapStateToProps = (state, ownProps) => {
     return {
         group: state.group,
@@ -11,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
             SETTINGS: state.translation.SETTINGS,
             INTERFACE: state.translation.INTERFACE
         },
-        drawerNav: ownProps.screenProps.drawerNav
+        navigation: ownProps.navigation
     }
 };
 
@@ -22,6 +27,20 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         loadGroup: () => {
             dispatch(getGroupAsync());
+        },
+        toggleDrawer: () => {
+            ownProps.screenProps.drawerNav.navigate('DrawerToggle');
+        },
+        //temp during development
+        loadTranslationToAsync: () => {
+            settingsAsyncStorageRequests
+                .setTranslation(
+                    'english',
+                    languageGetter('english'));
+            settingsAsyncStorageRequests
+            .setTranslation(
+                'russian',
+                languageGetter('russian'));
         }
     }
 };

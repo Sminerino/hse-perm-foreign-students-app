@@ -73,6 +73,22 @@ const lang = {
         YEAR: 'Год',
         GROUP: 'Номер группы',
         SUBGROUP: 'Подгруппа',
+    },
+    MAPS: {
+        BUILDING_1: 'Корпус 1',
+        BUILDING_2: 'Корпус 2',
+        BUILDING_3: 'Корпус 3',
+        BUILDING_4: 'Корпус 4',
+
+        B_1_DESCRIPTION: 'Главный корпус: менеджмент, история, право, бухгалтерия, управление ВШЭ',
+        B_2_DESCRIPTION: 'Лицей №10: иностранные языки, физкультура, высшая математика',
+        B_3_DESCRIPTION: 'Информационные технологии, военная кафедра, бизнес-инкубатор, общежитие №2',
+        B_4_DESCRIPTION: 'Economics, finances',
+
+        OTHER_BUILDINGS: {
+            DORM: 'Общежитие',
+            DORM_DESCRIPTION: 'Общежитие №1'
+        }
     }
 };
 export default lang;

@@ -25,4 +25,8 @@ export const settingsAsyncStorageRequests = {
         else throw new Error(`translation for the language ${_language} not found in AsyncStorage`)
     },
 
+    async setTranslation(_language, _translation) {
+        return AsyncStorage.setItem('translation_'+_language, JSON.stringify(_translation));
+    }
+
 };

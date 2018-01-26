@@ -8,7 +8,7 @@ import { TimetableContainer } from "../../redux/Containers/Timetable/TimetableCo
 import { NewsStackNavigator } from "../../Screens/News/NewsStackNavigator";
 import Events from '../../Screens/Events/Events';
 import Info from '../../Screens/Info/Info';
-import Map from '../../Screens/Map/Map';
+import { MapContainer } from "../../redux/Containers/Map/MapContainer";
 import { SettingsStackNavigator } from "../../Screens/Settings/SettingsStackNavigator";
 
 export const Drawer = (props) => {
@@ -66,7 +66,7 @@ export const Drawer = (props) => {
                 }
             },
             Map: {
-                screen: Map,
+                screen: MapContainer,
                 navigationOptions: {
                     drawerLabel: props.translation.MAP,
                     drawerIcon:

@@ -44,9 +44,7 @@ export class GroupPickerModal extends React.Component {
                         <View style={GroupPickerModalStyles.pickersContainer}>
                             <Picker
                                 selectedValue={
-                                    this.state.program
-                                        ? this.state.program
-                                        : this.props.group.program
+                                    this.state.program || this.props.group.program
                                 }
                                 onValueChange={this._setStudyProgram}
                                 style={GroupPickerModalStyles.programPicker}
@@ -63,9 +61,7 @@ export class GroupPickerModal extends React.Component {
 
                             <Picker
                                 selectedValue={
-                                    this.state.year
-                                        ? this.state.year
-                                        : this.props.group.year
+                                    this.state.year || this.props.group.year
                                 }
                                 onValueChange={this._setYear}
                                 style={GroupPickerModalStyles.picker}
@@ -81,9 +77,8 @@ export class GroupPickerModal extends React.Component {
 
                             <Picker
                                 selectedValue={
-                                    this.state.group
-                                        ? this.state.group
-                                        : this.props.group.group}
+                                    this.state.group || this.props.group.group
+                                }
                                 onValueChange={this._setGroup}
                                 style={GroupPickerModalStyles.picker}
                             >
@@ -182,17 +177,11 @@ export class GroupPickerModal extends React.Component {
         if(this.state.changed)
             this.props.onSubmit({
                 program:
-                    this.state.program
-                        ? this.state.program
-                        : this.props.group.program,
+                    this.state.program || this.props.program,
                 year:
-                    this.state.year
-                        ? this.state.year
-                        : this.props.group.year,
+                    this.state.year || this.props.year,
                 group:
-                    this.state.group
-                        ? this.state.group
-                        : this.props.group.group,
+                    this.state.group || this.props.group
             });
         this.props.onRequestClose();
     };

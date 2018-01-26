@@ -38,7 +38,7 @@ const lang = {
         CREDITS: 'Credits',
     },
     NEWS: {
-        title: 'News',
+        TITLE: 'News',
     },
     GROUP: {
         GROUP_TITLE: 'Group',
@@ -72,6 +72,22 @@ const lang = {
         YEAR: 'Year',
         GROUP: 'Group Number',
         SUBGROUP: 'Subgroup',
+    },
+    MAPS: {
+        BUILDING_1: 'Building 1',
+        BUILDING_2: 'Building 2',
+        BUILDING_3: 'Building 3',
+        BUILDING_4: 'Building 4',
+
+        B_1_DESCRIPTION: 'Main building: management, history, law, marketing',
+        B_2_DESCRIPTION: 'Lyceum N10: foreign languages, physical education, mathematics',
+        B_3_DESCRIPTION: 'Information technology, military dept., business-incubator, dorm',
+        B_4_DESCRIPTION: 'Economics, finances',
+
+        OTHER_BUILDINGS: {
+            DORM: 'Dorm',
+            DORM_DESCRIPTION: 'A place like home'
+        }
     }
 };
 export default lang;

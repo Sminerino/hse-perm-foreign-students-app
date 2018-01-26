@@ -1,7 +1,7 @@
 import { ActionTypes } from "../ActionTypes/actionTypes";
 import { newsAsyncStorageRequests } from "../../AsyncStorageRequests/news/news";
 
-function setNewsSync(news) {
+export function setNewsSync(news) {
     return {
         type: ActionTypes.SET_ALL_NEWS,
         news
@@ -21,6 +21,10 @@ function requestAllNewsAsync() {
 
 function requestViewedNewsPieceAsync(id) {
     return newsAsyncStorageRequests.getNewsPiece(id);
+}
+
+function getNewsPieceFromApi(id) {
+    //a request to server
 }
 
 export function fillNewsAsyncFromApi(language) {
@@ -45,12 +49,12 @@ export function setAllNewsAsync() {
     }
 }
 
-export function setViewedNewsPieceAsync(id) {
+export function setViewedNewsPieceApi(id) {
     return dispatch => {
-        return requestViewedNewsPieceAsync(id)
+        return getNewsPieceFromApi(id)
             .then(response => {
                 if(response)
-                    dispatch(setViewedNewsPieceSync(response));
+                    dispatch(getNewsPieceFromApi(id));
                 else
                     dispatch({
                         type: ActionTypes.SET_VIEWED_NEWS_PIECE_NOT_FOUND_ERR

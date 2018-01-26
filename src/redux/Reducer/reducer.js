@@ -15,6 +15,7 @@ const initialState = {
     *   title: '',
     *   picture: '',
     *   date: '',
+    *   thumbnail: '' // link to thumbnail
     * }
     * */
     viewedNewsPiece: {
@@ -22,8 +23,8 @@ const initialState = {
         title: '',
         date: '',
         text: '',
-        pictures: [],
-        titlePictureIndex: 0,
+        images: [], //contains object with 2 fields: { thumb, source }
+        // which both contain link to external image
     },
 
     viewedTimetableDay: {

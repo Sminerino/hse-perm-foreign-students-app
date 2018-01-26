@@ -6,6 +6,8 @@ const ScreenHeaderStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         height: 55,
+        flexShrink: 0,
+        flexGrow: 0,
         elevation: 8,
     },
     left: {

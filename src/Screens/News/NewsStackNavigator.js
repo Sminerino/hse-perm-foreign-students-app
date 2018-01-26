@@ -1,15 +1,16 @@
 import React from 'react'
 import { StackNavigator } from 'react-navigation';
 import { AllNews } from "./Screens/AllNews/AllNews";
-import { NewsInstance } from "./Screens/NewsInstance/NewsInstance";
+import { NewsContainer } from "../../redux/Containers/AllNews/AllNewsContainer";
+import { NewsInstanceContainer } from "../../redux/Containers/NewsInstance/NewsInstanceContainer";
 
 export const NewsStackNavigator = ({navigation}) => {
     const NewsStackNavigator = StackNavigator({
-            NewsInstance: {
-                screen: NewsInstance,
-            },
             AllNews: {
-                screen: AllNews,
+                screen: NewsContainer,
+            },
+            NewsInstance: {
+                screen: NewsInstanceContainer,
             },
         },
         {

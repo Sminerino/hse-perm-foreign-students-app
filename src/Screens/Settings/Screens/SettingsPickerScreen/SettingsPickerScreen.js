@@ -1,10 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Button } from 'react-native';
 import SettingsPickerScreenStyles from './SettingsPickerScreenStyles';
 import { SettingsTile } from './SettingsTile/SettingsTile';
 import { ScreenHeader } from './../../../../Controls/ScreenHeader/ScreenHeader';
 import { GroupPickerModal } from './GroupPickerModal/GroupPickerModal';
-import { tools } from './../../../../tools/tools';
+import { getShortGroupString } from "../../../../tools/tools";
 
 export class SettingsPickerScreen extends React.Component {
 
@@ -32,10 +32,6 @@ export class SettingsPickerScreen extends React.Component {
         });
     };
 
-    toggleDrawer = () => {
-        this.props.drawerNav.navigate('DrawerToggle');
-    };
-
     navigateToLanguagePicker = () => {
         this.props.navigation.navigate('Language');
     };
@@ -59,7 +55,7 @@ export class SettingsPickerScreen extends React.Component {
                 />
                 <ScreenHeader
                     title={this.props.translation.SETTINGS.TITLE}
-                    onLeftButtonPress={this.toggleDrawer}
+                    onLeftButtonPress={this.props.toggleDrawer}
                 />
                 <View style={SettingsPickerScreenStyles.tilesContainer}>
                     <SettingsTile
@@ -73,13 +69,18 @@ export class SettingsPickerScreen extends React.Component {
                         icon={require('./../../../../res/icons/group.png')}
                         onPress={this.openModal}
                         currentSettingText={
-                            tools.getShortGroupString(
+                            getShortGroupString(
                                 this.props.group,
                                 this.props.translation.GROUP.PROGRAMS
                             )
                         }
                     />
                 </View>
+                <Button
+                    title='Load translation to AsyncStorage'
+                    color='#003399'
+                    onPress={this.props.loadTranslationToAsync}
+                />
             </View>
         );
     }

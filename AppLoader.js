@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingScreen from './src/Screens/LoadingScreen/LoadingScreen';
+import { LoadingScreen } from './src/Screens/LoadingScreen/LoadingScreen';
 import { StyleSheet, View, StatusBar} from 'react-native';
 import { DrawerContainer } from "./src/redux/Containers/Drawer/DrawerContainer";
 import defaultSettings from './src/settings/defaultSettings';
