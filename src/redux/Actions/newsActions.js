@@ -8,7 +8,7 @@ export function setNewsSync(news) {
     }
 }
 
-function setViewedNewsPieceSync(newsPiece) {
+export function setViewedNewsPieceSync(newsPiece) { //exported only during development
     return {
         type: ActionTypes.SET_VIEWED_NEWS_PIECE,
         newsPiece

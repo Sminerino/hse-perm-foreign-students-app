@@ -47,7 +47,7 @@ export function appReducer(state = initialState, action) {
         translation: translationReducer(state.translation, action),
         group: groupReducer(state.group, action),
         news: newsReducer(state.news, action),
-        newsPiece: viewedNewsPieceReducer(state.viewedNewsPiece, action),
+        viewedNewsPiece: viewedNewsPieceReducer(state.viewedNewsPiece, action),
         viewedTimetableDay: viewedTimetableDayReducer(state.viewedTimetableDay, action)
     }
 }
