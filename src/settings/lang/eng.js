@@ -88,6 +88,11 @@ const lang = {
             DORM: 'Dorm',
             DORM_DESCRIPTION: 'A place like home'
         }
+    },
+    INITIAL_SETUP: {
+        CHOOSE_LANGUAGE: 'Choose language',
+        NEXT: 'Next step',
+        
     }
 };
 export default lang;

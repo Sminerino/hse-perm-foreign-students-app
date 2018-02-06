@@ -20,6 +20,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         requestNewsInstance: () => {
             //dispatch(setViewedNewsPieceApi(ownProps.navigation.state.params.newsId));
+            //totally mocked
             dispatch(setViewedNewsPieceSync({
                 id: 0,
                 title: '',

@@ -1,5 +1,7 @@
 import { ActionTypes } from "../ActionTypes/actionTypes";
 import { settingsAsyncStorageRequests } from "../../AsyncStorageRequests/settings/settings";
+//temp until backend implementation
+import { languageGetter } from "../../settings/lang/languageGetter";
 
 function setTranslationSync(translation) {
     return {
@@ -17,6 +19,23 @@ function setGroupSync(group) {
 
 function getLanguage() {
     return settingsAsyncStorageRequests.getLanguage();
+}
+
+async function loadTranslationToAsync(language, translation) {
+    return await settingsAsyncStorageRequests
+        .setTranslation(
+            language,
+            translation
+        );
+}
+
+export function loadTranslationAPItoAsync() {
+    //heavily mocked, translation is loaded from internal js object, not from api
+    return async () => {
+        loadTranslationToAsync('english', languageGetter('english'))
+            .then(() =>
+                loadTranslationToAsync('russian', languageGetter('russian')));
+    }
 }
 
 function getTranslation(language) {

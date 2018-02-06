@@ -2,6 +2,7 @@ import React from 'react';
 import { LoadingScreen } from './src/Screens/LoadingScreen/LoadingScreen';
 import { StyleSheet, View, StatusBar} from 'react-native';
 import { DrawerContainer } from "./src/redux/Containers/Drawer/DrawerContainer";
+import { InitialSetupContainer } from "./src/redux/Containers/InitialSetup/InitialSetupContainer";
 import defaultSettings from './src/settings/defaultSettings';
 
 //this module is wrapped in redux container
@@ -9,18 +10,21 @@ import defaultSettings from './src/settings/defaultSettings';
 export class AppLoader extends React.Component {
 
     render() {
+        if(this.props.initialRun)
+            return <InitialSetupContainer />;
         if(this.props.isLoaded) {
             return (
-            <View style={ styles.base }>
-                <View style={ styles.container }>
-                    <DrawerContainer />
+                <View style={ styles.base }>
+                    <View style={ styles.container }>
+                        <DrawerContainer />
+                    </View>
                 </View>
-            </View>
             );
         }
         else
             return <LoadingScreen />;
     }
+
     componentDidMount() {
         this.props.loadApp();
     }
@@ -33,7 +37,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#003399',
     },
     container: {
-        marginTop: StatusBar.currentHeight, // change that to 20 for ios build
+        marginTop: StatusBar.currentHeight,
         backgroundColor: '#fffafa',
         flex: 1,
     }
