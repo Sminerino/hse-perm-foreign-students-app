@@ -89,6 +89,12 @@ const lang = {
             DORM: 'Общежитие',
             DORM_DESCRIPTION: 'Общежитие №1'
         }
+    },
+    INITIAL_SETUP: {
+        CHOOSE_LANGUAGE: 'Выберите язык',
+        NEXT: 'Далее',
+        END: 'Завершить',
+        BACK: 'Назад'
     }
 };
 export default lang;

@@ -3,10 +3,10 @@ import { AsyncStorage } from 'react-native';
 export const settingsAsyncStorageRequests = {
 
     async setLanguage(_language) {
-        return AsyncStorage.setItem('language', _language);
+        await AsyncStorage.setItem('language', _language);
     },
     async setGroup(_group) {
-        return AsyncStorage.setItem('group', JSON.stringify({..._group}));
+        await AsyncStorage.setItem('group', JSON.stringify({..._group}));
     },
     async getGroup() {
         let response = await AsyncStorage.getItem('group');
@@ -26,7 +26,15 @@ export const settingsAsyncStorageRequests = {
     },
 
     async setTranslation(_language, _translation) {
-        return AsyncStorage.setItem('translation_'+_language, JSON.stringify(_translation));
-    }
+        await AsyncStorage.setItem('translation_'+_language, JSON.stringify(_translation));
+    },
 
+    async setPassedInitialRun(value) {
+        await AsyncStorage.setItem('passedInitialRun', value.toString());
+    },
+
+    async getInitialRun() {
+        let response = await AsyncStorage.getItem('passedInitialRun');
+        return JSON.parse(response);
+    }
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TouchableNativeFeedback } from 'react-native';
+import { View, StyleSheet, TouchableNativeFeedback, Text } from 'react-native';
 import { LanguageButton } from "./LanguageButton/LanguageButton";
 import { ScreenIndicator } from "../ScreenIndicator/ScreenIndicator";
 
@@ -8,7 +8,9 @@ export class LanguagePicker extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.title}>
-                    {props.translation.INITIAL_SETUP.CHOOSE_LANGUAGE}
+                    <Text>
+                        {this.props.translation.INITIAL_SETUP.CHOOSE_LANGUAGE}
+                    </Text>
                 </View>
                 <View style={styles.pickerContainer}>
                     <LanguageButton
@@ -26,11 +28,15 @@ export class LanguagePicker extends React.Component {
                     length={3}
                     current={0}
                 />
-                <TouchableNativeFeedback
-                    onPress={this.navigateGroupPicker}
-                >
-
-                </TouchableNativeFeedback>
+                <View>
+                    <TouchableNativeFeedback
+                        onPress={this.navigateGroupPicker}
+                    >
+                        <Text>
+                            {this.props.translation.INITIAL_SETUP.NEXT}
+                        </Text>
+                    </TouchableNativeFeedback>
+                </View>
             </View>
         );
     }

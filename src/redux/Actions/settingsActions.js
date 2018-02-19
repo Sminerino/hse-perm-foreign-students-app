@@ -17,25 +17,34 @@ function setGroupSync(group) {
     }
 }
 
+function setInitialSetupSync(value) {
+    return {
+        type: ActionTypes.SET_INITIAL_SETUP,
+        value
+    }
+}
+
 function getLanguage() {
     return settingsAsyncStorageRequests.getLanguage();
 }
 
 async function loadTranslationToAsync(language, translation) {
-    return await settingsAsyncStorageRequests
+    await settingsAsyncStorageRequests
         .setTranslation(
             language,
             translation
         );
 }
 
-export function loadTranslationAPItoAsync() {
+export async function loadTranslationAPItoAsync() {
     //heavily mocked, translation is loaded from internal js object, not from api
-    return async () => {
-        loadTranslationToAsync('english', languageGetter('english'))
-            .then(() =>
-                loadTranslationToAsync('russian', languageGetter('russian')));
-    }
+   try {
+       await loadTranslationToAsync('english', languageGetter('english'));
+       await loadTranslationToAsync('russian', languageGetter('russian'));
+   }
+   catch(err) {
+       throw new Error(err);
+   }
 }
 
 function getTranslation(language) {
@@ -128,5 +137,22 @@ export function setGroupAsync(group) {
                 })
             })
         );
+    }
+}
+
+export function setInitialRunAsync(value){
+   return dispatch => {
+       return settingsAsyncStorageRequests.setPassedInitialRun(value)
+           .then(async () => {
+               let passedInitial = await settingsAsyncStorageRequests.getInitialRun();
+               dispatch(setInitialSetupSync(passedInitial));
+           });
+   }
+}
+
+export function getInitialRunAsync() {
+    return dispatch => {
+        settingsAsyncStorageRequests.getInitialRun()
+        .then(value => dispatch(setInitialSetupSync(value)));
     }
 }

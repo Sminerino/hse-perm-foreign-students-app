@@ -10,15 +10,15 @@ import defaultSettings from './src/settings/defaultSettings';
 export class AppLoader extends React.Component {
 
     render() {
-        if(this.props.initialRun)
-            return <InitialSetupContainer />;
+        if(this.props.passedInitialRun === undefined)
+            return <LoadingScreen />;
+        if(!this.props.passedInitialRun)
+            return (
+                this.renderBase(<InitialSetupContainer />)
+            );
         if(this.props.isLoaded) {
             return (
-                <View style={ styles.base }>
-                    <View style={ styles.container }>
-                        <DrawerContainer />
-                    </View>
-                </View>
+                this.renderBase(<DrawerContainer />)
             );
         }
         else
@@ -26,7 +26,18 @@ export class AppLoader extends React.Component {
     }
 
     componentDidMount() {
-        this.props.loadApp();
+        this.props.getInitialRun();
+        this.props.loadTranslation();
+    }
+
+    renderBase(child) {
+        return (
+            <View style={ styles.base }>
+                <View style={ styles.container }>
+                    {child}
+                </View>
+            </View>
+        );
     }
 
 }

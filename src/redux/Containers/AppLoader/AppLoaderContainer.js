@@ -1,20 +1,29 @@
 import { connect } from 'react-redux';
-import { getTranslationAsync } from "../../Actions/settingsActions";
+import {
+    getTranslationAsync,
+    setInitialRunAsync,
+    getInitialRunAsync
+} from "../../Actions/settingsActions";
 import { AppLoader } from "../../../../AppLoader";
+import { ActionTypes } from "../../ActionTypes/actionTypes";
 
 const mapStateToProps = (state, ownProps) => {
     return {
         isLoaded: !!state.translation,
-        initialRun: state.initialRun
+        passedInitialRun: state.passedInitialRun
     }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        loadApp() {
+        loadTranslation() {
             dispatch(getTranslationAsync());
+        },
+        getInitialRun() {
+            dispatch(getInitialRunAsync());
         }
     }
+
 };
 
 export const AppLoaderContainer =

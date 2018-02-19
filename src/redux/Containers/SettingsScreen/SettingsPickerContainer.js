@@ -41,6 +41,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             .setTranslation(
                 'russian',
                 languageGetter('russian'));
+        },
+        //temp during development
+        passInitialSetup: () => {
+            settingsAsyncStorageRequests.setPassedInitialRun(false);
         }
     }
 };

@@ -81,6 +81,11 @@ export class SettingsPickerScreen extends React.Component {
                     color='#003399'
                     onPress={this.props.loadTranslationToAsync}
                 />
+                <Button
+                    title='Re-pass initial setup'
+                    color='#003399'
+                    onPress={this.props.passInitialSetup}
+                />
             </View>
         );
     }

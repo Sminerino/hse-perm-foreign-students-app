@@ -1,14 +1,18 @@
 import React from 'react';
-import { TouchableNativeFeedback, StyleSheet } from 'react-native';
+import { TouchableNativeFeedback, StyleSheet, View, Text } from 'react-native';
 
 export class LanguageButton extends React.PureComponent {
     render() {
         return (
-            <TouchableNativeFeedback
-                onPress={this.handlePress}
-            >
-                {this.props.languageLocal}
-            </TouchableNativeFeedback>
+            <View>
+                <TouchableNativeFeedback
+                    onPress={this.handlePress}
+                >
+                    <Text>
+                    {this.props.languageLocal}
+                    </Text>
+                </TouchableNativeFeedback>
+            </View>
         );
     }
 

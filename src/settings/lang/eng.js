@@ -92,7 +92,8 @@ const lang = {
     INITIAL_SETUP: {
         CHOOSE_LANGUAGE: 'Choose language',
         NEXT: 'Next step',
-        
+        END: 'Finish',
+        BACK: 'Back'
     }
 };
 export default lang;
