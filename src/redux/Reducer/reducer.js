@@ -50,7 +50,7 @@ export function appReducer(state = initialState, action) {
         news: newsReducer(state.news, action),
         viewedNewsPiece: viewedNewsPieceReducer(state.viewedNewsPiece, action),
         viewedTimetableDay: viewedTimetableDayReducer(state.viewedTimetableDay, action),
-        passedInitialRun: initialRunReducer(state.initialRun, action)
+        passedInitialRun: initialRunReducer(state.passedInitialRun, action)
     }
 }
 
@@ -114,7 +114,6 @@ function initialRunReducer(state = initialState.passedInitialRun, action) {
         case ActionTypes.SET_LANGUAGE_NOT_FOUND_ERR:
             return true;
         case ActionTypes.SET_INITIAL_SETUP:
-            console.log(action, 'reducer');
             return action.value;
         default: return state;
     }

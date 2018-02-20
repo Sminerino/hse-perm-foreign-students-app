@@ -42,7 +42,7 @@ const lang = {
         TITLE: 'Новости'
     },
     GROUP: {
-        GROUP_TITLE: 'Группа',
+        GROUP_TITLE: 'Учебная группа',
         PROGRAM: 'Программа',
         PROGRAMS: {
             businessInformatics: {
@@ -91,7 +91,7 @@ const lang = {
         }
     },
     INITIAL_SETUP: {
-        CHOOSE_LANGUAGE: 'Выберите язык',
+        CHOOSE_LANGUAGE: 'Язык',
         NEXT: 'Далее',
         END: 'Завершить',
         BACK: 'Назад'

@@ -5,10 +5,13 @@ import {SelectPicker} from 'react-native-select-picker';
 export default class Events extends React.Component {
     render() {
         return(
-            <View>
-                <SelectPicker
-                    data={[1,2,3,4,5]}
-                />
+            <View style={{ backgroundColor: '#d9e0f0', flex: 1, flexWrap: 'wrap', justifyContent: 'center'}}>
+                <Text style={{fontSize: 20, color: '#003399', flexWrap: 'wrap', alignSelf: 'center', alignItems: 'center', justifyContent: 'center'}}>
+                    This section is under maintenance
+                </Text>
+                <Text style={{fontSize: 20, color: '#003399', flexWrap: 'wrap', alignSelf: 'center', alignItems: 'center', justifyContent: 'center'}}>
+                    Please come back later
+                </Text>
             </View>
 
         );

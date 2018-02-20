@@ -90,7 +90,7 @@ const lang = {
         }
     },
     INITIAL_SETUP: {
-        CHOOSE_LANGUAGE: 'Choose language',
+        CHOOSE_LANGUAGE: 'Language',
         NEXT: 'Next step',
         END: 'Finish',
         BACK: 'Back'

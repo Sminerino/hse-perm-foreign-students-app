@@ -11,7 +11,7 @@ export class GroupPickerModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            changed: false
+            changed: false,
         }
     }
 
@@ -23,7 +23,7 @@ export class GroupPickerModal extends React.Component {
                 transparent={true}
                 mode='dialog'
             >
-                {this._renderModalContent()}
+                {this._renderModalContent()}kkk analysis
             </Modal>
         );
     }
@@ -177,11 +177,11 @@ export class GroupPickerModal extends React.Component {
         if(this.state.changed)
             this.props.onSubmit({
                 program:
-                    this.state.program || this.props.program,
+                    this.state.program || this.props.group.program,
                 year:
-                    this.state.year || this.props.year,
+                    this.state.year || this.props.group.year,
                 group:
-                    this.state.group || this.props.group
+                    this.state.group || this.props.group.group
             });
         this.props.onRequestClose();
     };
