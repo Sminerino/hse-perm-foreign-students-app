@@ -12,10 +12,11 @@ export class AppLoader extends React.Component {
     render() {
         if(this.props.passedInitialRun === undefined)
             return <LoadingScreen />;
-        if(!this.props.passedInitialRun)
+        if(this.props.passedInitialRun === false) {
             return (
-                this.renderBase(<InitialSetupContainer />)
+                this.renderBase(<InitialSetupContainer/>)
             );
+        }
         if(this.props.isLoaded) {
             return (
                 this.renderBase(<DrawerContainer />)

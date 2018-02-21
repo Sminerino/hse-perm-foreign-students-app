@@ -35,6 +35,7 @@ export const settingsAsyncStorageRequests = {
 
     async getInitialRun() {
         let response = await AsyncStorage.getItem('passedInitialRun');
-        return JSON.parse(response);
+        if(response) return JSON.parse(response);
+        else return false;
     }
 };

@@ -40,7 +40,7 @@ const initialState = {
         *    }
         */
     },
-    passedInitialRun: false, //app is launched for the first time
+    passedInitialRun: true, //app is launched for the first time
 };
 
 export function appReducer(state = initialState, action) {
@@ -112,7 +112,7 @@ function viewedTimetableDayReducer(state = initialState.viewedTimetableDay, acti
 function initialRunReducer(state = initialState.passedInitialRun, action) {
     switch(action.type) {
         case ActionTypes.SET_LANGUAGE_NOT_FOUND_ERR:
-            return true;
+            return false;
         case ActionTypes.SET_INITIAL_SETUP:
             return action.value;
         default: return state;

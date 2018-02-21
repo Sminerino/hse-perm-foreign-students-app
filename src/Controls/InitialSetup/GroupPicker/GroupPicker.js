@@ -26,7 +26,6 @@ export class GroupPicker extends React.Component {
     render() {
         const programs = this._getProgramsArray();
         const relevantYears = _getYearsArray();
-        console.log(this.state);
         return(
             <View style={styles.container}>
 

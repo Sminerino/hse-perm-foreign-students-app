@@ -4,25 +4,25 @@ import LanguagePickerScreenStyles from './LanguagePickerScreenStyles';
 import { ScreenHeader } from './../../../../Controls/ScreenHeader/ScreenHeader';
 import { LanguageTile } from './LanguageTile/LanguageTile';
 
-export const LanguagePickerScreen = (props) =>
+export const LanguagePickerScreen = ({goBack, translation, setLanguage}) =>
     <View style={LanguagePickerScreenStyles.container}>
         <ScreenHeader
-            title={props.translation.SETTINGS.LANGUAGE}
-            onLeftButtonPress={props.navigation.goBack}
+            title={translation.SETTINGS.LANGUAGE}
+            onLeftButtonPress={goBack}
             backButton={true}
         />
         <View style={LanguagePickerScreenStyles.tilesContainer}>
             <LanguageTile
-                onPress={props.setLanguage}
+                onPress={setLanguage}
                 text='English'
                 language='english'
-                currentLanguage={props.translation.LANG}
+                currentLanguage={translation.LANG}
             />
             <LanguageTile
-                onPress={props.setLanguage}
+                onPress={setLanguage}
                 text='Русский'
                 language='russian'
-                currentLanguage={props.translation.LANG}
+                currentLanguage={translation.LANG}
             />
         </View>
     </View>;

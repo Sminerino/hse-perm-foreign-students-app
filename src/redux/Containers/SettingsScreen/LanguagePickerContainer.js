@@ -4,7 +4,11 @@ import { setLanguageAsync } from "../../Actions/settingsActions";
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        translation: state.translation
+        translation: {
+            SETTINGS: state.translation.SETTINGS,
+            LANG: state.translation.LANG
+        },
+        goBack: () => ownProps.navigation.goBack()
     }
 };
 

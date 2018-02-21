@@ -23,7 +23,7 @@ export class GroupPickerModal extends React.Component {
                 transparent={true}
                 mode='dialog'
             >
-                {this._renderModalContent()}kkk analysis
+                {this._renderModalContent()}
             </Modal>
         );
     }
@@ -87,6 +87,7 @@ export class GroupPickerModal extends React.Component {
                                 <Picker.Item value={3} label='3'/>
                                 <Picker.Item value={4} label='4'/>
                             </Picker>
+
 
                         </View>
                         {this._renderButtons()}

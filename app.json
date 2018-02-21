@@ -1,5 +1,11 @@
 {
   "expo": {
-    "sdkVersion": "23.0.0"
+    "sdkVersion": "23.0.0",
+    "icon": "./logo.png",
+    "name": "HSE FS",
+    "description": "App to help foreign students start their journey in HSE Perm",
+    "android": {
+      "package":"com.hse.hsefs"
+    }
   }
 }
