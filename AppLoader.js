@@ -5,8 +5,6 @@ import { DrawerContainer } from "./src/redux/Containers/Drawer/DrawerContainer";
 import { InitialSetupContainer } from "./src/redux/Containers/InitialSetup/InitialSetupContainer";
 import defaultSettings from './src/settings/defaultSettings';
 
-//this module is wrapped in redux container
-
 export class AppLoader extends React.Component {
 
     render() {

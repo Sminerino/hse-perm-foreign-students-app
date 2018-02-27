@@ -5,7 +5,12 @@
     "name": "HSE FS",
     "description": "App to help foreign students start their journey in HSE Perm",
     "android": {
-      "package":"com.hse.hsefs"
+      "package":"com.hse.hsefs",
+      "config": {
+        "googleMaps": {
+          "apiKey":"AIzaSyBsTtlOkVAAbZrimZR9Z-juQ5yK1gDKWMc"
+        }
+      }
     }
   }
 }

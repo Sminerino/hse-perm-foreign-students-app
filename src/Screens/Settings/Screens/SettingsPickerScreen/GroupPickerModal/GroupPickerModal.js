@@ -5,6 +5,16 @@ import {
 } from 'react-native';
 import GroupPickerModalStyles from './GroupPickerModalStyles';
 import studyPrograms from './../../../../../settings/studyPrograms/studyPrograms';
+import {SelectPicker} from 'react-native-select-picker';
+
+
+const _getYearsArray = () => {
+    let currentYear = new Date().getFullYear();
+    let yearArr = [];
+    for (let i = currentYear - 4; i < currentYear + 4; i++)
+        yearArr.push(i);
+    return yearArr;
+};
 
 export class GroupPickerModal extends React.Component {
 
@@ -29,65 +39,61 @@ export class GroupPickerModal extends React.Component {
     }
     _renderModalContent() {
         const programs = this._getProgramsArray();
-        const relevantYears = this._getYearsArray();
+        const relevantYears = _getYearsArray();
+
+        const currentProgramIndex = studyPrograms.indexOf(this.props.group.program);
+        const currentYearIndex = relevantYears.indexOf(this.props.group.year);
+
         return(
             <View style={GroupPickerModalStyles.container}>
                 {this._renderOutsideWindow('vertical')}
                 <View style={GroupPickerModalStyles.outsideWindowContainer}>
                     {this._renderOutsideWindow('horizontal')}
                     <View style={GroupPickerModalStyles.window}>
-                        <View style={GroupPickerModalStyles.titleContainer}>
-                            <Text style={GroupPickerModalStyles.title}>
-                                {this.props.translation.GROUP.GROUP_TITLE}
-                            </Text>
-                        </View>
                         <View style={GroupPickerModalStyles.pickersContainer}>
-                            <Picker
-                                selectedValue={
-                                    this.state.program || this.props.group.program
-                                }
+
+                            <SelectPicker
+                                data={programs.map(
+                                    program => ({value:program.value, label:program.label})
+                                )}
                                 onValueChange={this._setStudyProgram}
-                                style={GroupPickerModalStyles.programPicker}
-                                itemStyle={GroupPickerModalStyles.itemStyle}
-                            >
-                                {programs.map(program =>
-                                    <Picker.Item
-                                        value={program.value}
-                                        label={program.label}
-                                        key={program.value}
-                                    />
+                                defaultValue={currentProgramIndex}
+                                fontColor='#003399'
+                                fontSize={15}
+                                wrapWidth={250}
+                                maskercolor='rgba(255, 255, 255, 0.7)'
+                                itemHeight={70}
+                                wrapHeight={210}
+                            />
+                            <SelectPicker
+                                data={relevantYears.map(
+                                    year => ({value:year, label:(year-2000).toString()})
                                 )}
-                            </Picker>
-
-                            <Picker
-                                selectedValue={
-                                    this.state.year || this.props.group.year
-                                }
                                 onValueChange={this._setYear}
-                                style={GroupPickerModalStyles.picker}
-                            >
-                                {relevantYears.map(year =>
-                                    <Picker.Item
-                                        value={year}
-                                        label={(year-2000).toString()}
-                                        key={year}
-                                    />
-                                )}
-                            </Picker>
-
-                            <Picker
-                                selectedValue={
-                                    this.state.group || this.props.group.group
-                                }
+                                defaultValue={currentYearIndex}
+                                fontColor='#003399'
+                                fontSize={15}
+                                wrapWidth={75}
+                                maskercolor='rgba(255, 255, 255, 0.7)'
+                                itemHeight={70}
+                                wrapHeight={210}
+                            />
+                            <SelectPicker
+                                data={[
+                                    {value: 1, label: 1},
+                                    {value: 2, label: 2},
+                                    {value: 3, label: 3},
+                                    {value: 4, label: 4}
+                                ]}
+                                defaultValue={this.props.group.group-1}
                                 onValueChange={this._setGroup}
-                                style={GroupPickerModalStyles.picker}
-                            >
-                                <Picker.Item value={1} label='1'/>
-                                <Picker.Item value={2} label='2'/>
-                                <Picker.Item value={3} label='3'/>
-                                <Picker.Item value={4} label='4'/>
-                            </Picker>
-
+                                fontColor='#003399'
+                                fontSize={15}
+                                wrapWidth={75}
+                                maskercolor='rgba(255, 255, 255, 0.7)'
+                                itemHeight={70}
+                                wrapHeight={210}
+                            />
 
                         </View>
                         {this._renderButtons()}
@@ -100,22 +106,11 @@ export class GroupPickerModal extends React.Component {
     }
 
     _getProgramsArray() {
-        let programArr = [];
-        studyPrograms.forEach(program => {
-            programArr.push({
-                value: program,
-                label: this.props.translation.GROUP.PROGRAMS[program].LONG
-            })
-        });
-        return programArr;
+        return studyPrograms.map(program => ({
+            value: program, label: this.props.translation.GROUP.PROGRAMS[program].LONG
+        }));
     }
-    _getYearsArray() {
-        let currentYear = new Date().getFullYear();
-        let yearArr = [];
-        for (let i = currentYear - 4; i < currentYear + 4; i++)
-            yearArr.push(i);
-        return yearArr;
-    }
+
     _setStudyProgram = (_program) => {
         this.setState({
             program: _program,
@@ -187,3 +182,50 @@ export class GroupPickerModal extends React.Component {
         this.props.onRequestClose();
     };
 }
+
+
+//<Picker
+//    selectedValue={
+//        this.state.program || this.props.group.program
+//    }
+//    onValueChange={this._setStudyProgram}
+//    style={GroupPickerModalStyles.programPicker}
+//    itemStyle={GroupPickerModalStyles.itemStyle}
+//>
+//    {programs.map(program =>
+//        <Picker.Item
+//            value={program.value}
+//            label={program.label}
+//            key={program.value}
+//        />
+//    )}
+//</Picker>
+//
+//<Picker
+//    selectedValue={
+//        this.state.year || this.props.group.year
+//    }
+//    onValueChange={this._setYear}
+//    style={GroupPickerModalStyles.picker}
+//>
+//    {relevantYears.map(year =>
+//        <Picker.Item
+//            value={year}
+//            label={(year-2000).toString()}
+//            key={year}
+//        />
+//    )}
+//</Picker>
+//
+//<Picker
+//selectedValue={
+//    this.state.group || this.props.group.group
+//}
+//onValueChange={this._setGroup}
+//style={GroupPickerModalStyles.picker}
+//>
+//<Picker.Item value={1} label='1'/>
+//    <Picker.Item value={2} label='2'/>
+//    <Picker.Item value={3} label='3'/>
+//    <Picker.Item value={4} label='4'/>
+//    </Picker>

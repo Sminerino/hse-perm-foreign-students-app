@@ -36,7 +36,8 @@ const GroupPickerModalStyles = StyleSheet.create({
         borderRadius: 3,
     },
     window: {
-        backgroundColor: '#fffafa',
+        backgroundColor: 'white',
+        height: 270,
         width: '95%',
         borderRadius: 3,
         flexGrow: 1,

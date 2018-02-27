@@ -229,9 +229,12 @@ class SelectPicker extends React.Component {
     });   
   }
 
+
+
   render () {
     let {wrapHeight, wrapWidth, itemHeight, data, fontColor, fontSize, wrapStyle, maskercolor, borderStyle} = this.props;
     let maskItemHeight = (wrapHeight - itemHeight) / 2;
+
 
     return (
       <View style={[styles.wrap, {height: wrapHeight, width: wrapWidth}, wrapStyle]}>
